@@ -1,0 +1,23 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# 虚拟环境
+.venv/
+venv/
+
+# PyCharm 本地配置
+.idea/
+
+# 数据集：体积大且可用脚本重新下载，不纳入版本控制
+pytorch/data/
+
+# W&B 本地运行记录：属于本机实验环境产物
+pytorch/wandb/
+
+# 图像处理过程图：输入是 skimage 自带样例图，全部可由 notebook 重新生成
+pytorch/image_processing/outputs/
+
+# 本地协作与个人说明文件，不纳入版本控制
+AGENTS.md
