@@ -1,0 +1,99 @@
+wandb: Tracking run with wandb version 0.30.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /root/work/wandb/offline-run-20260914_194230-vzhup8z0
+wandb: View this run in the terminal with `wandb leet`
+PyTorch 版本: 2.14.0+cpu
+CUDA 是否可用: False
+使用设备: cpu
+训练集 54000 张，验证集 6000 张，测试集 10000 张
+Net(
+  (block1): Sequential(
+    (0): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (5): ReLU()
+    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (7): Dropout2d(p=0.1, inplace=False)
+  )
+  (block2): Sequential(
+    (0): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (5): ReLU()
+    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (7): Dropout2d(p=0.1, inplace=False)
+  )
+  (classifier): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): Linear(in_features=3136, out_features=128, bias=True)
+    (2): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (3): ReLU()
+    (4): Dropout(p=0.5, inplace=False)
+    (5): Linear(in_features=128, out_features=10, bias=True)
+  )
+)
+参数量: 468458
+Epoch [1/35], Loss: 1.0819, Val Acc: 85.25%, Best Val: 85.25%, LR: 0.000998
+Epoch [2/35], Loss: 0.9284, Val Acc: 87.70%, Best Val: 87.70%, LR: 0.000992
+Epoch [3/35], Loss: 0.8865, Val Acc: 88.15%, Best Val: 88.15%, LR: 0.000982
+Epoch [4/35], Loss: 0.8594, Val Acc: 90.05%, Best Val: 90.05%, LR: 0.000968
+Epoch [5/35], Loss: 0.8383, Val Acc: 90.60%, Best Val: 90.60%, LR: 0.000950
+Epoch [6/35], Loss: 0.8254, Val Acc: 91.23%, Best Val: 91.23%, LR: 0.000929
+Epoch [7/35], Loss: 0.8152, Val Acc: 91.40%, Best Val: 91.40%, LR: 0.000905
+Epoch [8/35], Loss: 0.8053, Val Acc: 91.52%, Best Val: 91.52%, LR: 0.000877
+Epoch [9/35], Loss: 0.7985, Val Acc: 91.52%, Best Val: 91.52%, LR: 0.000846
+Epoch [10/35], Loss: 0.7895, Val Acc: 91.73%, Best Val: 91.73%, LR: 0.000812
+Epoch [11/35], Loss: 0.7871, Val Acc: 92.48%, Best Val: 92.48%, LR: 0.000775
+Epoch [12/35], Loss: 0.7834, Val Acc: 92.18%, Best Val: 92.48%, LR: 0.000737
+Epoch [13/35], Loss: 0.7756, Val Acc: 92.60%, Best Val: 92.60%, LR: 0.000697
+Epoch [14/35], Loss: 0.7705, Val Acc: 92.85%, Best Val: 92.85%, LR: 0.000655
+Epoch [15/35], Loss: 0.7675, Val Acc: 92.98%, Best Val: 92.98%, LR: 0.000611
+Epoch [16/35], Loss: 0.7616, Val Acc: 93.15%, Best Val: 93.15%, LR: 0.000567
+Epoch [17/35], Loss: 0.7574, Val Acc: 92.73%, Best Val: 93.15%, LR: 0.000522
+Epoch [18/35], Loss: 0.7525, Val Acc: 93.17%, Best Val: 93.17%, LR: 0.000478
+Epoch [19/35], Loss: 0.7503, Val Acc: 93.33%, Best Val: 93.33%, LR: 0.000433
+Epoch [20/35], Loss: 0.7463, Val Acc: 93.48%, Best Val: 93.48%, LR: 0.000389
+Epoch [21/35], Loss: 0.7406, Val Acc: 93.55%, Best Val: 93.55%, LR: 0.000345
+Epoch [22/35], Loss: 0.7396, Val Acc: 93.42%, Best Val: 93.55%, LR: 0.000303
+Epoch [23/35], Loss: 0.7371, Val Acc: 93.57%, Best Val: 93.57%, LR: 0.000263
+Epoch [24/35], Loss: 0.7348, Val Acc: 93.67%, Best Val: 93.67%, LR: 0.000225
+Epoch [25/35], Loss: 0.7278, Val Acc: 93.70%, Best Val: 93.70%, LR: 0.000188
+Epoch [26/35], Loss: 0.7262, Val Acc: 93.68%, Best Val: 93.70%, LR: 0.000154
+Epoch [27/35], Loss: 0.7253, Val Acc: 93.67%, Best Val: 93.70%, LR: 0.000123
+Epoch [28/35], Loss: 0.7219, Val Acc: 93.57%, Best Val: 93.70%, LR: 0.000095
+Epoch [29/35], Loss: 0.7203, Val Acc: 93.85%, Best Val: 93.85%, LR: 0.000071
+Epoch [30/35], Loss: 0.7181, Val Acc: 94.02%, Best Val: 94.02%, LR: 0.000050
+Epoch [31/35], Loss: 0.7164, Val Acc: 93.85%, Best Val: 94.02%, LR: 0.000032
+Epoch [32/35], Loss: 0.7161, Val Acc: 93.83%, Best Val: 94.02%, LR: 0.000018
+Epoch [33/35], Loss: 0.7151, Val Acc: 93.85%, Best Val: 94.02%, LR: 0.000008
+Epoch [34/35], Loss: 0.7135, Val Acc: 93.87%, Best Val: 94.02%, LR: 0.000002
+Epoch [35/35], Loss: 0.7141, Val Acc: 94.03%, Best Val: 94.03%, LR: 0.000000
+Finished Training
+wandb: 
+wandb: Run history:
+wandb: best_val/accuracy ▁
+wandb:             epoch ▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▄▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇███
+wandb:     learning_rate ██████▇▇▇▇▆▆▆▆▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁▁▁▁
+wandb:     test/accuracy ▁
+wandb:        train/loss █▅▄▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      val/accuracy ▁▃▃▅▅▆▆▆▆▆▇▇▇▇▇▇▇▇▇████████████████
+wandb: 
+wandb: Run summary:
+wandb: best_val/accuracy 94.03333
+wandb:             epoch 35
+wandb:     learning_rate 0
+wandb:     test/accuracy 93.33
+wandb:        train/loss 0.71414
+wandb:      val/accuracy 94.03333
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /root/work/wandb/offline-run-20260914_194230-vzhup8z0
+wandb: Find logs at: ./wandb/offline-run-20260914_194230-vzhup8z0/logs
+验证集最佳准确率: 94.03%
+测试集准确率: 93.33%
+权重已保存到: /root/work/fashion_mnist/outputs/fashion_mnist_cnn.pth
+训练记录已保存到: /root/work/fashion_mnist/outputs/results.json
