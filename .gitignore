@@ -16,6 +16,11 @@ pytorch/data/
 # W&B 本地运行记录：属于本机实验环境产物
 pytorch/wandb/
 
+# PneumoniaMNIST 目录：数据集可用脚本重新下载，W&B 记录是本机实验环境产物
+# （outputs/ 里是权重和训练结果，按 fashion_mnist 的惯例保留跟踪）
+pytorch/pneumonia_mnist/data/
+pytorch/pneumonia_mnist/wandb/
+
 # 图像处理过程图：输入是 skimage 自带样例图，全部可由 notebook 重新生成
 pytorch/image_processing/outputs/
 

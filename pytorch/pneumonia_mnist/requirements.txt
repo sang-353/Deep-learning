@@ -1,0 +1,19 @@
+# PneumoniaMNIST 训练脚本的依赖记录
+# 记录环境：conda 环境 pytorch，Python 3.11.16，Windows（RTX 4060 Laptop）
+#
+# 重要：torch / torchvision 后面的 +cu126 表示本地装的是 CUDA 12.6 版本，
+# 换机器（尤其是 Linux 服务器）时不要直接 pip install 这两行，
+# 会装成 CPU 版或与服务器驱动不匹配的版本。
+# 正确做法是先按 PyTorch 官网给出的对应 CUDA 命令装 torch 和 torchvision，
+# 再安装本文件里的其余包。
+#
+# 如果需要完整环境快照（存档、写文档用），在项目使用的环境里执行：
+#   pip freeze > requirements-full.txt
+
+torch==2.14.0+cu126
+torchvision==0.29.0+cu126
+wandb==0.30.0
+numpy==2.4.6
+pillow==12.3.0
+medmnist==3.0.2
+scikit-learn==1.9.1
