@@ -1,0 +1,55 @@
+**********************
+PowerShell 记录开始
+开始时间: 20260921220400
+用户名: SANG\35314
+RunAs 用户: SANG\35314
+配置名称: 
+计算机: SANG (Microsoft Windows NT 10.0.26200.0)
+主机应用程序: C:\Program Files\PowerShell\7\pwsh.dll
+进程 ID: 41876
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+转录已开始，输出文件为 E:\code\PycharmProjects\pythonProject\pytorch\nnunet\logs\20260921-heart-5folds.txt
+PS E:\code\PycharmProjects\pythonProject\pytorch\nnunet>
+(nnunet) foreach ($fold in 0..4) {
+    Write-Host ("===== fold $fold 开始  " + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')) -ForegroundColor Cyan
+    nnUNetv2_train 2 3d_fullres $fold -tr nnUNetTrainer_100epochs -p nnUNetPlans_6gb --npz
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "fold $fold 出错（退出码 $LASTEXITCODE），已停止后续折" -ForegroundColor Red
+        break
+    }
+    Write-Host ("===== fold $fold 完成  " + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')) -ForegroundColor Green
+}
+===== fold 0 开始  2026-09-21 22:04:29
+2026-09-22 08:59:05.308246: predicting la_007
+2026-09-22 08:59:05.407868: la_007, shape torch.Size([1, 130, 320, 244]), rank 0
+2026-09-22 08:59:31.091316: predicting la_016
+2026-09-22 08:59:31.146379: la_016, shape torch.Size([1, 90, 316, 196]), rank 0
+2026-09-22 08:59:43.185700: predicting la_021
+2026-09-22 08:59:43.257854: la_021, shape torch.Size([1, 100, 320, 228]), rank 0
+2026-09-22 09:00:01.308234: predicting la_024
+2026-09-22 09:00:01.378588: la_024, shape torch.Size([1, 120, 320, 232]), rank 0
+2026-09-22 09:00:32.140056: Validation complete
+2026-09-22 09:00:32.151687: Mean Validation Dice:  0.9345390453039885
+===== fold 0 完成  2026-09-22 09:00:34
+===== fold 1 开始  2026-09-22 09:00:34
+
+===== fold 1 完成  2026-09-22 13:01:58
+===== fold 2 开始  2026-09-22 13:01:58
+
+===== fold 2 完成  2026-09-22 16:51:52
+===== fold 3 开始  2026-09-22 16:51:52
+
+===== fold 3 完成  2026-09-22 20:24:20
+===== fold 4 开始  2026-09-22 20:24:20
+
+===== fold 4 完成  2026-09-22 23:46:52
+PS E:\code\PycharmProjects\pythonProject\pytorch\nnunet>

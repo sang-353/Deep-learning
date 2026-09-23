@@ -1,0 +1,72 @@
+PowerShell 7.6.6
+加载个人和系统配置文件耗时 1711 毫秒。
+(base) PS C:\Users\35314> [Environment]::GetEnvironmentVariable('nnUNet_raw','User')
+E:\code\PycharmProjects\pythonProject\pytorch\nnunet\nnUNet_raw
+(base) PS C:\Users\35314> conda activate nnunet
+(nnunet) PS C:\Users\35314> # 建解压目录并解压（tar 在 Windows 10 以后自带）
+(nnunet) PS C:\Users\35314> New-Item -ItemType Directory -Force E:\code\PycharmProjects\pythonProject\pytorch\data\msd | Out-Null
+(nnunet) PS C:\Users\35314> tar -xf C:\Users\35314\Task04_Hippocampus.tar -C E:\code\PycharmProjects\pythonProject\pytorch\data\msd
+(nnunet) PS C:\Users\35314>
+(nnunet) PS C:\Users\35314> # 转换：先用 -h 看清参数名，再执行
+(nnunet) PS C:\Users\35314> nnUNetv2_convert_MSD_dataset -h
+usage: nnUNetv2_convert_MSD_dataset [-h] -i I [-overwrite_id OVERWRITE_ID] [-np NP]
+
+options:
+  -h, --help            show this help message and exit
+  -i I                  Downloaded and extracted MSD dataset folder. CANNOT be nnUNetv1 dataset! Example:
+                        /home/fabian/Downloads/Task05_Prostate
+  -overwrite_id OVERWRITE_ID
+                        Overwrite the dataset id. If not set we use the id of the MSD task (inferred from folder
+                        name). Only use this if you already have an equivalently numbered dataset!
+  -np NP                Number of processes used. Default: 8
+(nnunet) PS C:\Users\35314> nnUNetv2_convert_MSD_dataset -i E:\code\PycharmProjects\pythonProject\pytorch\data\msd\Task04_Hippocampus
+(nnunet) PS C:\Users\35314>
+(nnunet) PS C:\Users\35314> # 确认转换结果：nnUNet_raw 下应该出现 DatasetXXX_Hippocampus
+(nnunet) PS C:\Users\35314> Get-ChildItem $env:nnUNet_raw
+
+    目录:E:\code\PycharmProjects\pythonProject\pytorch\nnunet\nnUNet_raw
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           2026/9/20    18:33                Dataset004_Hippocampus
+
+(nnunet) PS C:\Users\35314>
+(nnunet) PS C:\Users\35314> # 再跑原来那条命令
+(nnunet) PS C:\Users\35314> nnUNetv2_plan_and_preprocess -d 4 --verify_dataset_integrity
+Fingerprint extraction...
+Dataset004_Hippocampus
+Using <class 'nnunetv2.imageio.simpleitk_reader_writer.SimpleITKIO'> as reader/writer
+
+####################
+verify_dataset_integrity Done.
+If you didn't see any error messages then your dataset is most likely OK!
+####################
+
+Using <class 'nnunetv2.imageio.simpleitk_reader_writer.SimpleITKIO'> as reader/writer
+Extracting dataset fingerprint: 100%|████████████████████████████████████████████████| 260/260 [00:08<00:00, 31.08it/s]
+Experiment planning...
+
+############################
+INFO: You are using the old nnU-Net default planner. We have updated our recommendations. Please consider using those instead! Read more here: https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/resenc_presets.md
+############################
+
+Dropping 3d_lowres config because the image size difference to 3d_fullres is too small. 3d_fullres: [36. 50. 35.], 3d_lowres: [36, 50, 35]
+2D U-Net configuration:
+{'data_identifier': 'nnUNetPlans_2d', 'preprocessor_name': 'DefaultPreprocessor', 'batch_size': 366, 'patch_size': (np.int64(56), np.int64(40)), 'median_image_size_in_voxels': array([50., 35.]), 'spacing': array([1., 1.]), 'normalization_schemes': ['ZScoreNormalization'], 'use_mask_for_norm': [False], 'resampling_fn_data': 'resample_data_or_seg_to_shape', 'resampling_fn_seg': 'resample_data_or_seg_to_shape', 'resampling_fn_data_kwargs': {'is_seg': False, 'order': 3, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_seg_kwargs': {'is_seg': True, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_probabilities': 'resample_data_or_seg_to_shape', 'resampling_fn_probabilities_kwargs': {'is_seg': False, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'architecture': {'network_class_name': 'dynamic_network_architectures.architectures.unet.PlainConvUNet', 'arch_kwargs': {'n_stages': 4, 'features_per_stage': (32, 64, 128, 256), 'conv_op': 'torch.nn.modules.conv.Conv2d', 'kernel_sizes': ((3, 3), (3, 3), (3, 3), (3, 3)), 'strides': ((1, 1), (2, 2), (2, 2), (2, 2)), 'n_conv_per_stage': (2, 2, 2, 2), 'n_conv_per_stage_decoder': (2, 2, 2), 'conv_bias': True, 'norm_op': 'torch.nn.modules.instancenorm.InstanceNorm2d', 'norm_op_kwargs': {'eps': 1e-05, 'affine': True}, 'dropout_op': None, 'dropout_op_kwargs': None, 'nonlin': 'torch.nn.LeakyReLU', 'nonlin_kwargs': {'inplace': True}}, '_kw_requires_import': ('conv_op', 'norm_op', 'dropout_op', 'nonlin')}, 'batch_dice': True}
+
+Using <class 'nnunetv2.imageio.simpleitk_reader_writer.SimpleITKIO'> as reader/writer
+3D fullres U-Net configuration:
+{'data_identifier': 'nnUNetPlans_3d_fullres', 'preprocessor_name': 'DefaultPreprocessor', 'batch_size': 9, 'patch_size': (np.int64(40), np.int64(56), np.int64(40)), 'median_image_size_in_voxels': array([36., 50., 35.]), 'spacing': array([1., 1., 1.]), 'normalization_schemes': ['ZScoreNormalization'], 'use_mask_for_norm': [False], 'resampling_fn_data': 'resample_data_or_seg_to_shape', 'resampling_fn_seg': 'resample_data_or_seg_to_shape', 'resampling_fn_data_kwargs': {'is_seg': False, 'order': 3, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_seg_kwargs': {'is_seg': True, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_probabilities': 'resample_data_or_seg_to_shape', 'resampling_fn_probabilities_kwargs': {'is_seg': False, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'architecture': {'network_class_name': 'dynamic_network_architectures.architectures.unet.PlainConvUNet', 'arch_kwargs': {'n_stages': 4, 'features_per_stage': (32, 64, 128, 256), 'conv_op': 'torch.nn.modules.conv.Conv3d', 'kernel_sizes': ((3, 3, 3), (3, 3, 3), (3, 3, 3), (3, 3, 3)), 'strides': ((1, 1, 1), (2, 2, 2), (2, 2, 2), (2, 2, 2)), 'n_conv_per_stage': (2, 2, 2, 2), 'n_conv_per_stage_decoder': (2, 2, 2), 'conv_bias': True, 'norm_op': 'torch.nn.modules.instancenorm.InstanceNorm3d', 'norm_op_kwargs': {'eps': 1e-05, 'affine': True}, 'dropout_op': None, 'dropout_op_kwargs': None, 'nonlin': 'torch.nn.LeakyReLU', 'nonlin_kwargs': {'inplace': True}}, '_kw_requires_import': ('conv_op', 'norm_op', 'dropout_op', 'nonlin')}, 'batch_dice': False}
+
+Plans were saved to E:\code\PycharmProjects\pythonProject\pytorch\nnunet\nnUNet_preprocessed\Dataset004_Hippocampus\nnUNetPlans.json
+Preprocessing...
+Preprocessing dataset Dataset004_Hippocampus
+Configuration: 2d...
+{'data_identifier': 'nnUNetPlans_2d', 'preprocessor_name': 'DefaultPreprocessor', 'batch_size': 366, 'patch_size': [56, 40], 'median_image_size_in_voxels': [50.0, 35.0], 'spacing': [1.0, 1.0], 'normalization_schemes': ['ZScoreNormalization'], 'use_mask_for_norm': [False], 'resampling_fn_data': 'resample_data_or_seg_to_shape', 'resampling_fn_seg': 'resample_data_or_seg_to_shape', 'resampling_fn_data_kwargs': {'is_seg': False, 'order': 3, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_seg_kwargs': {'is_seg': True, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_probabilities': 'resample_data_or_seg_to_shape', 'resampling_fn_probabilities_kwargs': {'is_seg': False, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'architecture': {'network_class_name': 'dynamic_network_architectures.architectures.unet.PlainConvUNet', 'arch_kwargs': {'n_stages': 4, 'features_per_stage': [32, 64, 128, 256], 'conv_op': 'torch.nn.modules.conv.Conv2d', 'kernel_sizes': [[3, 3], [3, 3], [3, 3], [3, 3]], 'strides': [[1, 1], [2, 2], [2, 2], [2, 2]], 'n_conv_per_stage': [2, 2, 2, 2], 'n_conv_per_stage_decoder': [2, 2, 2], 'conv_bias': True, 'norm_op': 'torch.nn.modules.instancenorm.InstanceNorm2d', 'norm_op_kwargs': {'eps': 1e-05, 'affine': True}, 'dropout_op': None, 'dropout_op_kwargs': None, 'nonlin': 'torch.nn.LeakyReLU', 'nonlin_kwargs': {'inplace': True}}, '_kw_requires_import': ['conv_op', 'norm_op', 'dropout_op', 'nonlin']}, 'batch_dice': True}
+Preprocessing cases: 100%|███████████████████████████████████████████████████████████| 260/260 [02:05<00:00,  2.07it/s]
+Configuration: 3d_fullres...
+{'data_identifier': 'nnUNetPlans_3d_fullres', 'preprocessor_name': 'DefaultPreprocessor', 'batch_size': 9, 'patch_size': [40, 56, 40], 'median_image_size_in_voxels': [36.0, 50.0, 35.0], 'spacing': [1.0, 1.0, 1.0], 'normalization_schemes': ['ZScoreNormalization'], 'use_mask_for_norm': [False], 'resampling_fn_data': 'resample_data_or_seg_to_shape', 'resampling_fn_seg': 'resample_data_or_seg_to_shape', 'resampling_fn_data_kwargs': {'is_seg': False, 'order': 3, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_seg_kwargs': {'is_seg': True, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_probabilities': 'resample_data_or_seg_to_shape', 'resampling_fn_probabilities_kwargs': {'is_seg': False, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'architecture': {'network_class_name': 'dynamic_network_architectures.architectures.unet.PlainConvUNet', 'arch_kwargs': {'n_stages': 4, 'features_per_stage': [32, 64, 128, 256], 'conv_op': 'torch.nn.modules.conv.Conv3d', 'kernel_sizes': [[3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3]], 'strides': [[1, 1, 1], [2, 2, 2], [2, 2, 2], [2, 2, 2]], 'n_conv_per_stage': [2, 2, 2, 2], 'n_conv_per_stage_decoder': [2, 2, 2], 'conv_bias': True, 'norm_op': 'torch.nn.modules.instancenorm.InstanceNorm3d', 'norm_op_kwargs': {'eps': 1e-05, 'affine': True}, 'dropout_op': None, 'dropout_op_kwargs': None, 'nonlin': 'torch.nn.LeakyReLU', 'nonlin_kwargs': {'inplace': True}}, '_kw_requires_import': ['conv_op', 'norm_op', 'dropout_op', 'nonlin']}, 'batch_dice': False}
+Preprocessing cases: 100%|███████████████████████████████████████████████████████████| 260/260 [00:22<00:00, 11.47it/s]
+Configuration: 3d_lowres...
+INFO: Configuration 3d_lowres not found in plans file nnUNetPlans.json of dataset Dataset004_Hippocampus. Skipping.
+(nnunet) PS C:\Users\35314>
