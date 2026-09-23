@@ -1,0 +1,114 @@
+PyTorch 版本: 2.14.0+cpu
+CUDA 是否可用: False
+使用设备: cpu
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /root/.netrc.
+wandb: Currently logged in as: 3531427435 (3531427435-none) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run two2udty
+wandb: Tracking run with wandb version 0.30.0
+wandb: Run data is saved locally in /root/pneumonia_mnist/wandb/run-20260916_162334-two2udty
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run baseline-server
+wandb: ⭐️ View project at https://wandb.ai/3531427435-none/pneumonia-mnist-cnn
+wandb: 🚀 View run at https://wandb.ai/3531427435-none/pneumonia-mnist-cnn/runs/two2udty
+训练集 4708 张（正常 1214 / 肺炎 3494），验证集 524 张，测试集 624 张
+Net(
+  (block1): Sequential(
+    (0): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (5): ReLU()
+    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (7): Dropout2d(p=0.1, inplace=False)
+  )
+  (block2): Sequential(
+    (0): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (5): ReLU()
+    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (7): Dropout2d(p=0.1, inplace=False)
+  )
+  (classifier): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): Linear(in_features=3136, out_features=512, bias=True)
+    (2): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (3): ReLU()
+    (4): Dropout(p=0.5, inplace=False)
+    (5): Linear(in_features=512, out_features=2, bias=True)
+  )
+)
+参数量: 1673570
+Epoch [1/35], Loss: 0.3921, Val Acc: 91.98%, Val AUC: 0.9841, Best Val AUC: 0.9841, LR: 0.000998
+Epoch [2/35], Loss: 0.3225, Val Acc: 93.70%, Val AUC: 0.9879, Best Val AUC: 0.9879, LR: 0.000992
+Epoch [3/35], Loss: 0.3073, Val Acc: 94.85%, Val AUC: 0.9880, Best Val AUC: 0.9880, LR: 0.000982
+Epoch [4/35], Loss: 0.3101, Val Acc: 95.80%, Val AUC: 0.9927, Best Val AUC: 0.9927, LR: 0.000968
+Epoch [5/35], Loss: 0.2924, Val Acc: 96.76%, Val AUC: 0.9939, Best Val AUC: 0.9939, LR: 0.000950
+Epoch [6/35], Loss: 0.2887, Val Acc: 94.08%, Val AUC: 0.9932, Best Val AUC: 0.9939, LR: 0.000929
+Epoch [7/35], Loss: 0.2846, Val Acc: 95.99%, Val AUC: 0.9951, Best Val AUC: 0.9951, LR: 0.000905
+Epoch [8/35], Loss: 0.2733, Val Acc: 97.71%, Val AUC: 0.9962, Best Val AUC: 0.9962, LR: 0.000877
+Epoch [9/35], Loss: 0.2816, Val Acc: 96.18%, Val AUC: 0.9953, Best Val AUC: 0.9962, LR: 0.000846
+Epoch [10/35], Loss: 0.2755, Val Acc: 95.80%, Val AUC: 0.9974, Best Val AUC: 0.9974, LR: 0.000812
+Epoch [11/35], Loss: 0.2692, Val Acc: 96.76%, Val AUC: 0.9973, Best Val AUC: 0.9974, LR: 0.000775
+Epoch [12/35], Loss: 0.2675, Val Acc: 98.09%, Val AUC: 0.9963, Best Val AUC: 0.9974, LR: 0.000737
+Epoch [13/35], Loss: 0.2644, Val Acc: 96.37%, Val AUC: 0.9965, Best Val AUC: 0.9974, LR: 0.000697
+Epoch [14/35], Loss: 0.2582, Val Acc: 97.52%, Val AUC: 0.9965, Best Val AUC: 0.9974, LR: 0.000655
+Epoch [15/35], Loss: 0.2591, Val Acc: 97.52%, Val AUC: 0.9973, Best Val AUC: 0.9974, LR: 0.000611
+Epoch [16/35], Loss: 0.2566, Val Acc: 98.09%, Val AUC: 0.9975, Best Val AUC: 0.9975, LR: 0.000567
+Epoch [17/35], Loss: 0.2573, Val Acc: 97.14%, Val AUC: 0.9970, Best Val AUC: 0.9975, LR: 0.000522
+Epoch [18/35], Loss: 0.2544, Val Acc: 98.09%, Val AUC: 0.9981, Best Val AUC: 0.9981, LR: 0.000478
+Epoch [19/35], Loss: 0.2542, Val Acc: 97.33%, Val AUC: 0.9974, Best Val AUC: 0.9981, LR: 0.000433
+Epoch [20/35], Loss: 0.2492, Val Acc: 97.90%, Val AUC: 0.9979, Best Val AUC: 0.9981, LR: 0.000389
+Epoch [21/35], Loss: 0.2492, Val Acc: 97.90%, Val AUC: 0.9981, Best Val AUC: 0.9981, LR: 0.000345
+Epoch [22/35], Loss: 0.2521, Val Acc: 98.09%, Val AUC: 0.9984, Best Val AUC: 0.9984, LR: 0.000303
+Epoch [23/35], Loss: 0.2475, Val Acc: 97.90%, Val AUC: 0.9981, Best Val AUC: 0.9984, LR: 0.000263
+Epoch [24/35], Loss: 0.2446, Val Acc: 98.28%, Val AUC: 0.9986, Best Val AUC: 0.9986, LR: 0.000225
+Epoch [25/35], Loss: 0.2437, Val Acc: 98.28%, Val AUC: 0.9986, Best Val AUC: 0.9986, LR: 0.000188
+Epoch [26/35], Loss: 0.2454, Val Acc: 98.47%, Val AUC: 0.9982, Best Val AUC: 0.9986, LR: 0.000154
+Epoch [27/35], Loss: 0.2407, Val Acc: 98.09%, Val AUC: 0.9986, Best Val AUC: 0.9986, LR: 0.000123
+Epoch [28/35], Loss: 0.2398, Val Acc: 98.09%, Val AUC: 0.9985, Best Val AUC: 0.9986, LR: 0.000095
+Epoch [29/35], Loss: 0.2399, Val Acc: 98.47%, Val AUC: 0.9985, Best Val AUC: 0.9986, LR: 0.000071
+Epoch [30/35], Loss: 0.2377, Val Acc: 98.47%, Val AUC: 0.9987, Best Val AUC: 0.9987, LR: 0.000050
+Epoch [31/35], Loss: 0.2357, Val Acc: 98.66%, Val AUC: 0.9987, Best Val AUC: 0.9987, LR: 0.000032
+Epoch [32/35], Loss: 0.2384, Val Acc: 98.66%, Val AUC: 0.9987, Best Val AUC: 0.9987, LR: 0.000018
+Epoch [33/35], Loss: 0.2363, Val Acc: 98.66%, Val AUC: 0.9987, Best Val AUC: 0.9987, LR: 0.000008
+Epoch [34/35], Loss: 0.2363, Val Acc: 98.66%, Val AUC: 0.9988, Best Val AUC: 0.9988, LR: 0.000002
+Epoch [35/35], Loss: 0.2376, Val Acc: 98.66%, Val AUC: 0.9987, Best Val AUC: 0.9988, LR: 0.000000
+Finished Training
+验证集最佳 AUC: 0.9988
+测试集 AUC: 0.9753
+测试集准确率: 90.38%
+权重已保存到: /root/pneumonia_mnist/outputs/pneumonia_cnn.pth
+训练记录已保存到: /root/pneumonia_mnist/outputs/results.json
+wandb: uploading artifact pneumonia-cnn; updating run metadata
+wandb: uploading artifact pneumonia-cnn
+wandb: uploading artifact pneumonia-cnn; uploading history steps 34-35, summary, console lines 66-72
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: 
+wandb: Run history:
+wandb:  best_val/auc ▁
+wandb:         epoch ▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▄▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇███
+wandb: learning_rate ██████▇▇▇▇▆▆▆▆▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁▁▁▁
+wandb: test/accuracy ▁
+wandb:      test/auc ▁
+wandb:    train/loss █▅▄▄▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:  val/accuracy ▁▃▄▅▆▃▅▇▅▅▆▇▆▇▇▇▆▇▇▇▇▇▇███▇▇███████
+wandb:       val/auc ▁▃▃▅▆▅▆▇▆▇▇▇▇▇▇▇▇█▇████████████████
+wandb: 
+wandb: Run summary:
+wandb:  best_val/auc 0.99876
+wandb:         epoch 35
+wandb: learning_rate 0
+wandb: test/accuracy 90.38462
+wandb:      test/auc 0.97527
+wandb:    train/loss 0.23756
+wandb:  val/accuracy 98.66412
+wandb:       val/auc 0.99874
+wandb: 
+wandb: 🚀 View run baseline-server at: https://wandb.ai/3531427435-none/pneumonia-mnist-cnn/runs/two2udty
+wandb: ⭐️ View project at: https://wandb.ai/3531427435-none/pneumonia-mnist-cnn
+wandb: Synced 5 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260916_162334-two2udty/logs
