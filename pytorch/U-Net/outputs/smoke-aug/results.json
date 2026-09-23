@@ -1,0 +1,42 @@
+{
+  "config": {
+    "data_root": "E:\\code\\PycharmProjects\\pythonProject\\pytorch\\data\\dsb2018\\stage1_train",
+    "output_dir": "outputs/smoke-aug",
+    "epochs": 3,
+    "batch_size": 4,
+    "lr": 0.001,
+    "image_size": 256,
+    "val_ratio": 0.15,
+    "base_channels": 64,
+    "seed": 42,
+    "num_workers": 0,
+    "augment": true,
+    "loss": "bce",
+    "project": "dsb2018-unet",
+    "run_name": "smoke-aug"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.2594205780879601,
+      "train_dice": 0.6585477926752024,
+      "val_dice": 0.5756496179103852,
+      "learning_rate": 0.00075
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.15389360206110494,
+      "train_dice": 0.7775380903168728,
+      "val_dice": 0.7356133449077606,
+      "learning_rate": 0.0002500000000000001
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.12714483260691584,
+      "train_dice": 0.8170577457076624,
+      "val_dice": 0.7907794618606567,
+      "learning_rate": 0.0
+    }
+  ],
+  "best_val_dice": 0.7907794618606567
+}
